@@ -1,3 +1,12 @@
 [workspace]
-members = ["bananas", "guess", "lemons", "calc", "enums_patterns", "functions", "structs"]
+members = [
+    "bananas", 
+    "guess", 
+    "lemons", 
+    "calc", 
+    "enums_patterns", 
+    "functions", 
+    "structs", 
+    "donut",
+]
 resolver = "2"

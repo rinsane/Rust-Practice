@@ -1,12 +1,10 @@
 
-#[warn(unused_variables)]
 fn main() {
     let banana = 'a';
     let x = "abc";
     let y = x;
     let arr = [1,2,3];
-    let mango = arr[4]; 
-    println!("{}", x)
+    let t = x.chars().nth(1).unwrap_or_default();
+    println!("{}", t);
 
-    
 }

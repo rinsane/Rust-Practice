@@ -1,7 +1,7 @@
-use std::io::{self, Write};
+use colored::Colorize;
 use rand::Rng;
 use std::cmp::Ordering;
-use colored::Colorize;
+use std::io::{self, Write};
 
 fn main() {
     let secret = rand::thread_rng().gen_range(1..=100);
@@ -10,22 +10,20 @@ fn main() {
     loop {
         print!("Input your guess: ");
         io::stdout().flush().expect("Failed to flush stdout");
-
-        let mut guess = "".to_string();
+        let mut guess = String::from("");
         io::stdin()
-            .read_line(&mut guess)  
+            .read_line(&mut guess)
             .expect("Failed to read line.");
 
         let guess: u32 = match guess.trim().parse() {
             Ok(val) => val,
             Err(_) => {
                 println!("Please input a number!");
-                continue
+                continue;
             }
         };
 
-        
-        println!("your guess: {}", guess.to_string().blue());
+        println!("Your guess: {}", guess.to_string().blue());
 
         match guess.cmp(&secret) {
             Ordering::Less => println!("{}", "Too Small!".red()),
@@ -36,5 +34,4 @@ fn main() {
             }
         }
     }
-    
 }

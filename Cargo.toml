@@ -1,5 +1,5 @@
 [workspace]
-members = [ "borrowchecker", "guessing_game", "library", "modules","play"
+members = [ "borrowchecker", "colors", "guessing_game", "modules", "play"
 
 ]
 resolver = "2"

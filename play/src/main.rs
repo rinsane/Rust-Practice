@@ -1,6 +1,11 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
+use std::collections::HashMap;
+// use std::collections::hash_map::Entry::{Occupied, Vacant};
+use unicode_segmentation::UnicodeSegmentation;
+use std::fs::File;
+
 #[derive(Debug)]
 struct User {
     name: String,
@@ -68,7 +73,7 @@ fn main() {
     {
         let somenumber: Option<i32> = Some(69);
         let somenumber2: Option<i32> = Some(42);
-        println!("{:?}", somenumber);
+        println!("{somenumber:?}");
         match somenumber {
             Some(num) => println!("we have a number {num}"),
             None => println!("Nothing bro"),
@@ -84,7 +89,71 @@ fn main() {
 
     {
         let apple = println!("this is an assigned print statement!");
-        println!("{apple}");
+        println!("{apple:?}");
+    }
+
+    {
+        let mut v = vec![1, 2, 3, 4, 5];
+        let ele = &v[2];
+        // let ele: Option<&i32> = v.get(2);
+        // match ele {
+        //     Some(e) => println!("{e}"),
+        //     None => println!("out of range!"),
+        // }
+        println!("{:?}", v);
+        println!("{ele}");
+
+        v.push(42);
+        v[2] = 99;
+        println!("{}", v[2]);
+    }
+
+    {
+        let s = "🍎";
+        println!("{s}");
+        let mut ss = String::from("This is an apple: ");
+        println!("{:?}", ss.push_str(s));
+        println!("{ss}");
+
+        let s1 = " hellow ";
+        let s2 = String::from(" wrorld ");
+        let s3 = s1.to_string() + &s2 + "e" + s1 + &s2;
+        println!("{}", s3);
+        let nam = "नमस्ते";
+        for i in nam.chars() {
+            print!("{} ", i);
+        }
+        println!();
+        for i in nam.graphemes(true) {
+            print!("{} ", i);
+        }
+        let sl = &nam[0..6];
+        println!("\n{sl} <- this");
+    }
+
+    {
+        let mut hmap = HashMap::new();
+        hmap.insert("Rishabh", 21);
+        hmap.insert("Satvic", 5);
+        hmap.insert("Arav", 20);
+        println!("{hmap:?} cap = {}", hmap.capacity());
+        let name = "Rishabh";
+        let val = hmap.get(name);
+
+        // match val { // if val was = hmap.entry(name)
+        //     Occupied(vale) => println!("{:?}", hmap.get(name)),
+        //     Vacant(vale)=> println!("Not found!  {:?}", hmap.get(name)),
+        // }
+        match val {
+            Some(e) => println!("{name} = {e}"),
+            None => println!("{name} = None!"),
+        }
+        println!("{:?}", hmap.keys());
+    }
+
+    {
+        let fp = File::open("hello.txt");
+        println!("{:?}", fp);
     }
     let s = String::from("hello world");
 }
